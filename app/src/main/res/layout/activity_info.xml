@@ -19,19 +19,19 @@
         tools:context="ru.example.mvpvm_rx_kotlin.info.InfoActivity">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            bind:imageResource="@{viewModel.image}"/>
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            bind:imageResource="@{viewModel.image}" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.name}"/>
+            android:text="@={viewModel.name}" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={viewModel.lastname}"/>
+            android:text="@={viewModel.lastname}" />
 
     </LinearLayout>
 

@@ -2,4 +2,6 @@
     <string name="app_name">MVPVM_RX_Kotlin</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="info">INFO!</string>
+    <string name="sign_in">Sign In</string>
 </resources>

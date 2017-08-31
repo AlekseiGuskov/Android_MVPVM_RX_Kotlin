@@ -13,8 +13,5 @@ class InfoPresenter(private val mView: IInfo.IView, private val mViewModel: Info
         mViewModel.lastname = infoModel.lastname
     }
 
-    private fun getData(): InfoModel {
-        return InfoModel(R.mipmap.putin,
-                "Vladimir", "Putin")
-    }
+    private fun getData(): InfoModel = InfoModel(R.mipmap.putin, "Vladimir", "Putin")
 }

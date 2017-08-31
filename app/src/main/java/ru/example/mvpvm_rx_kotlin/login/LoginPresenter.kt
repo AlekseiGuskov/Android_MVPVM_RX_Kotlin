@@ -1,8 +1,9 @@
 package ru.example.mvpvm_rx_kotlin.login
 
 import android.view.View
+import java.util.regex.Pattern
 
-class LoginPresenter(private val mView: ILogin.IView, private val mViewModel: LoginViewModel): ILogin.IPresenter {
+class LoginPresenter(private val mView: ILogin.IView, private val mViewModel: LoginViewModel) : ILogin.IPresenter {
 
     override fun onViewInit() {
         mViewModel.buttonClickListener = View.OnClickListener {
@@ -13,12 +14,27 @@ class LoginPresenter(private val mView: ILogin.IView, private val mViewModel: Lo
             mView.goToInfoScreen()
         }
 
-        mViewModel.emailObservable().subscribe {
-            mView.showToast("Email changed")
+        mViewModel.buttonIsEnableObservable().subscribe { enable ->
+            mViewModel.buttonIsEnable = enable
         }
 
-        mViewModel.passwordObservable().subscribe {
-            mView.showToast("Password changed")
+        mViewModel.emailObservable().filter { email ->
+            mViewModel.emailIsMatched(false)
+            return@filter emailIsMatched(email)
+        }.subscribe {
+            mViewModel.emailIsMatched(true)
+        }
+
+        mViewModel.passwordObservable().filter { password ->
+            mViewModel.passwordIsMatched(false)
+            return@filter passwordIsMatched(password)
+        }.subscribe {
+            mViewModel.passwordIsMatched(true)
         }
     }
+
+    private fun emailIsMatched(text: String) =
+            Pattern.compile("^.+@.+\\..+$").matcher(text).matches()
+
+    private fun passwordIsMatched(text: String) = text != ""
 }

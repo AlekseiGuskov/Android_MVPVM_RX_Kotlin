@@ -56,7 +56,8 @@
             android:layout_marginTop="16dp"
             android:onClick="@{viewModel.buttonClickListener}"
             android:textStyle="bold"
-            tools:text="Sign In" />
+            android:enabled="@{viewModel.buttonIsEnable}"
+            android:text="@string/sign_in" />
 
     </LinearLayout>
 
